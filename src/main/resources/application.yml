@@ -1,9 +1,17 @@
 spring:
+  profiles:
+    active: development
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
+  cloud:
+    gcp:
+      credentials:
+        location: "file:/Users/kuratadaisuke/Projects/open-web-library/open-web-library-74319408fc6c.json"
+        scopes: "DEFAULT_SCOPES,https://www.googleapis.com/auth/cloud-vision"
+      project-id: "open-web-library"
 
 logging:
   level:
