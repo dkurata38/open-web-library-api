@@ -12,7 +12,10 @@ spring:
         location: "file:/Users/kuratadaisuke/Projects/open-web-library/open-web-library-74319408fc6c.json"
         scopes: "DEFAULT_SCOPES,https://www.googleapis.com/auth/cloud-vision"
       project-id: "open-web-library"
-
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 20MB
 logging:
   level:
     org.springframework: ERROR
