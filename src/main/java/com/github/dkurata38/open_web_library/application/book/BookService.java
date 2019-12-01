@@ -25,24 +25,25 @@ public class BookService {
 
 	public List<Book> findBy() {
 		// TODO
+
 		return new ArrayList<>();
 	}
 	public Optional<BookSummary> findByImage(@NonNull Resource resource) {
-		ISBN isbn = extractISBNFromImage(resource);
-		return bookSearchClient.getByISBN(isbn);
+		return extractISBNFromImage(resource)
+		.flatMap(bookSearchClient::getByISBN);
 	}
 
-	public ISBN extractISBNFromImage(@Nonnull Resource resource) {
+	public Optional<ISBN> extractISBNFromImage(@Nonnull Resource resource) {
 		String text = imageCognitionClient.extractTextFromImage(resource);
 		Matcher isbn13Matcher = ISBN13.BARCODE_PATTERN.matcher(text);
 		if (isbn13Matcher.find()) {
-			return ISBN13.fromBarcode(isbn13Matcher.group());
+			return Optional.of(ISBN13.fromBarcode(isbn13Matcher.group()));
 		}
 
 		Matcher isbn10Matcher = ISBN10.BARCODE_PATTERN.matcher(text);
 		if (isbn10Matcher.find()) {
-			return ISBN10.fromBarcode(isbn10Matcher.group());
+			return Optional.of(ISBN10.fromBarcode(isbn10Matcher.group()));
 		}
-		throw new IllegalArgumentException();
+		return Optional.empty();
 	}
 }
