@@ -12,7 +12,7 @@ public class GoogleCloudVisionClient implements ImageCognitionClient {
 	private final CloudVisionTemplate cloudVisionTemplate;
 
 	@Override
-	public String getContents(Resource resource) {
+	public String extractTextFromImage(Resource resource) {
 		return cloudVisionTemplate.extractTextFromImage(resource);
 	}
 }

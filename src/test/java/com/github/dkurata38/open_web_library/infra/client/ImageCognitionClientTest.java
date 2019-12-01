@@ -20,7 +20,7 @@ class ImageCognitionClientTest {
 	void getContents() {
 		Resource resource =
 				resourceLoader.getResource("classpath:Test2.jpg");
-		String contents = imageCognitionClient.getContents(resource);
+		String contents = imageCognitionClient.extractTextFromImage(resource);
 		log.info(contents);
 	}
 }
