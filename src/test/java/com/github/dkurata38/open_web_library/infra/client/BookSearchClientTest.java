@@ -1,5 +1,6 @@
 package com.github.dkurata38.open_web_library.infra.client;
 
+import com.github.dkurata38.open_web_library.domain.book.BookSummary;
 import com.github.dkurata38.open_web_library.domain.book.ISBN;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ class BookSearchClientTest {
 	@Test
 	void getByISBN() {
 		ISBN isbn = ISBN.ofBarcode("ISBN978-4-7981-3161-0");
-		String s = bookSearchClient.getByISBN(isbn);
-		log.info(s);
+		bookSearchClient.getByISBN(isbn)
+			.ifPresent(bookSummary -> log.info(bookSummary.toString()));
 	}
 }

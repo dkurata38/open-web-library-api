@@ -1,20 +1,18 @@
 package com.github.dkurata38.open_web_library.domain.book;
 
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
 import javax.annotation.Nonnull;
 import java.util.regex.Pattern;
 
-@RequiredArgsConstructor
+@Value
 public class ISBN10 implements ISBN {
 	public final static String PATTERN_STRING = "[\\d|\\-]{13}";
 	public final static Pattern PATTERN = Pattern.compile(PATTERN_STRING);
 	public final static String BARCODE_PATTERN_STRING = "ISBN" + PATTERN_STRING;
 	public final static Pattern BARCODE_PATTERN = Pattern.compile(BARCODE_PATTERN_STRING);
 
-	@Getter
 	@org.hibernate.validator.constraints.ISBN
 	private final String value;
 
