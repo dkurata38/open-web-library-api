@@ -1,8 +1,8 @@
 package com.github.dkurata38.open_web_library.application.book;
 
-import com.github.dkurata38.open_web_library.domain.book.*;
-import com.github.dkurata38.open_web_library.infra.client.BookSearchClient;
-import com.github.dkurata38.open_web_library.infra.client.ImageCognitionClient;
+import com.github.dkurata38.open_web_library.domain.book.Book;
+import com.github.dkurata38.open_web_library.domain.book.BookSummary;
+import com.github.dkurata38.open_web_library.domain.book.ISBN;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,6 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 
 @Service
 @RequiredArgsConstructor
@@ -35,15 +34,10 @@ public class BookService {
 
 	public Optional<ISBN> extractISBNFromImage(@Nonnull Resource resource) {
 		String text = imageCognitionClient.extractTextFromImage(resource);
-		Matcher isbn13Matcher = ISBN13.BARCODE_PATTERN.matcher(text);
-		if (isbn13Matcher.find()) {
-			return Optional.of(ISBN13.fromBarcode(isbn13Matcher.group()));
+		try {
+			return Optional.of(ISBN.extractBarcodeFromText(text));
+		} catch (IllegalArgumentException e) {
+			return Optional.empty();
 		}
-
-		Matcher isbn10Matcher = ISBN10.BARCODE_PATTERN.matcher(text);
-		if (isbn10Matcher.find()) {
-			return Optional.of(ISBN10.fromBarcode(isbn10Matcher.group()));
-		}
-		return Optional.empty();
 	}
 }
