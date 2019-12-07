@@ -1,0 +1,29 @@
+plugins {
+    id 'idea'
+    id 'java'
+    id "com.thinkimi.gradle.MybatisGenerator" version "2.1.2"
+}
+
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    mybatisGenerator
+}
+
+mybatisGenerator {
+    verbose = true
+    def configFileName = 'generatorConfig.xml'
+    configFile = sourceSets.getByName('main').resources.find{ (it.name == configFileName) }
+    targetDir = projectDir.toPath().toString()
+    overwrite = true
+
+    dependencies {
+        implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1"
+        mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.7'
+        mybatisGenerator 'org.postgresql:postgresql:42.2.6'
+    }
+}
