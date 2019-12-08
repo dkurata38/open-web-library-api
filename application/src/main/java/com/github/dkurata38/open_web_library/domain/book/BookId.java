@@ -6,5 +6,5 @@ import lombok.Value;
 @RequiredArgsConstructor
 @Value
 public class BookId {
-	private final Integer value;
+	private final String value;
 }

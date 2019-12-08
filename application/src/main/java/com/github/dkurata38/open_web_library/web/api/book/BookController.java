@@ -19,7 +19,7 @@ class BookController {
     private final BookService bookService;
 
     @PostMapping(resourcesPath + "/search")
-    public List<Book> search() {
+    public Iterable<Book> search() {
 		return bookService.findBy();
     }
 
