@@ -30,10 +30,10 @@ dependencyManagement {
 
 dependencies {
     //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-    //	implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.flywaydb:flyway-core'
+//    implementation 'org.flywaydb:flyway-core'
     implementation 'org.springframework.cloud:spring-cloud-gcp-starter'
     implementation 'org.springframework.cloud:spring-cloud-gcp-starter-vision'
     compileOnly 'org.projectlombok:lombok'
@@ -44,7 +44,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-//	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'com.h2database:h2'
     testAnnotationProcessor 'org.projectlombok:lombok'
