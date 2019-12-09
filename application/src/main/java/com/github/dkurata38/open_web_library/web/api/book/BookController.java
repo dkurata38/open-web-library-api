@@ -18,10 +18,10 @@ class BookController {
 
     private final BookService bookService;
 
-    @PostMapping(resourcesPath + "/search")
-    public Iterable<Book> search() {
-		return bookService.findBy();
-    }
+//    @PostMapping(resourcesPath + "/search")
+//    public Iterable<Book> search() {
+//		return bookService.findBy();
+//    }
 
     @CrossOrigin
     @PostMapping(resourcesPath + "/image_search")

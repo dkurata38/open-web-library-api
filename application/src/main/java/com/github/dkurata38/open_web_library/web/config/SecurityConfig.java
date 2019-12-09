@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
 		.and()
 			.csrf()
-			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+			.ignoringAntMatchers(LOGIN_PROCESSING_PATH);
 
 	}
 

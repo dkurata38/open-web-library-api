@@ -17,7 +17,7 @@ class BookSearchClientTest {
 	@Autowired
 	private BookSearchClient bookSearchClient;
 
-	@Test
+//	@Test
 	void getByISBN() {
 		ISBN isbn = ISBN.ofBarcode("ISBN978-4-7981-3161-0");
 		bookSearchClient.getByISBN(isbn)

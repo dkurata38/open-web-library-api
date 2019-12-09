@@ -32,8 +32,9 @@ dependencies {
     //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-//    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+    implementation 'org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4'
+    //    implementation 'org.flywaydb:flyway-core'
     implementation 'org.springframework.cloud:spring-cloud-gcp-starter'
     implementation 'org.springframework.cloud:spring-cloud-gcp-starter-vision'
     compileOnly 'org.projectlombok:lombok'
@@ -48,4 +49,11 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'com.h2database:h2'
     testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    testLogging {
+        exceptionFormat 'full'
+    }
+    useJUnitPlatform()
 }

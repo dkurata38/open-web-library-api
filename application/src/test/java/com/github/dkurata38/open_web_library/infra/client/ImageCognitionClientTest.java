@@ -16,7 +16,7 @@ class ImageCognitionClientTest {
 	@Autowired
 	private ResourceLoader resourceLoader;
 
-	@Test
+//	@Test
 	void getContents() {
 		Resource resource =
 				resourceLoader.getResource("classpath:Test2.jpg");
