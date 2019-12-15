@@ -21,7 +21,7 @@ public class MemberDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("not found:" + username);
 		}
 
-		return memberCredentialRepository.findMemberCredentialByLoginId(username)
+		return memberCredentialRepository.getMemberCredentialByLoginIdEquals(username)
 			.map(memberCredential -> new User(username, memberCredential.getPassword(), AuthorityUtils.createAuthorityList("USER")))
 			.orElseThrow(() -> new UsernameNotFoundException("not found:" + username));
 	}
