@@ -24,7 +24,6 @@ class BookController {
 //		return bookService.findBy();
 //    }
 
-    @CrossOrigin
     @PostMapping(resourcesPath + "/image_search")
     public BookSummary searchByImage(@RequestParam MultipartFile image) {
     	return bookService.findByImage(image.getResource())
