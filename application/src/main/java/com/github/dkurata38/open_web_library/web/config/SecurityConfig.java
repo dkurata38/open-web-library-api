@@ -3,13 +3,13 @@ package com.github.dkurata38.open_web_library.web.config;
 import com.github.dkurata38.open_web_library.application.security.MemberDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
+@ConfigurationProperties(prefix = "application.security")
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -25,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String USER_NAME_PARAMETER = "user_id";
 	public static final String PASSWORD_PARAMETER = "password";
 
-	@Value("${application.cors-permit-host}")
 	private String corsPermitHost;
 
 	@Override
@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
 		.and()
 			.csrf()
-			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+			.ignoringAntMatchers(LOGIN_PROCESSING_PATH);
 
 	}
 
