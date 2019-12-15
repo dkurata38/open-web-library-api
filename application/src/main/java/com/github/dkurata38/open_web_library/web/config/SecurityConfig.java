@@ -10,12 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @ConfigurationProperties(prefix = "application.security")
@@ -43,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl(LOGIN_PROCESSING_PATH).permitAll()
 				.usernameParameter(USER_NAME_PARAMETER)
 				.passwordParameter(PASSWORD_PARAMETER)
+				.successHandler(new ReturningHttpOkHandler())
 				// success handler return 200
 				.failureHandler(new AuthenticationEntryPointFailureHandler(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
 		.and()
@@ -54,6 +63,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			.ignoringAntMatchers(LOGIN_PROCESSING_PATH);
 
+	}
+
+	public static class ReturningHttpOkHandler implements AuthenticationSuccessHandler {
+
+		@Override
+		public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain, final Authentication authentication) throws IOException, ServletException {
+			response.setStatus(HttpStatus.OK.value());
+		}
+
+		@Override
+		public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
+			response.setStatus(HttpStatus.OK.value());
+		}
 	}
 
 	@Bean
