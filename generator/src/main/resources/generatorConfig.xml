@@ -1,0 +1,43 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="false"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:5432/open_web_library"
+                        userId="postgres" password="postgres"/>
+
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.github.dkurata38.open_web_library.infra.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library-api/generator/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.github.dkurata38.open_web_library.infra.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library-api/generator/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.github.dkurata38.open_web_library.infra.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library-api/generator/src/main/java"
+            type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="member"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               domainObjectName="MemberTable"
+               ></table>
+        <table tableName="member_credential"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               domainObjectName="MemberCredentialTable"
+        ></table>
+    </context>
+</generatorConfiguration>
