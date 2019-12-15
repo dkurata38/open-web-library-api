@@ -24,7 +24,9 @@ logging:
   level:
     org.springframework: ERROR
     com.github.dkurata38.open_web_library: DEBUG
+    org.springframework.jdbc.core: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
 application:
-  cors-permit-host: "localhost:8000"
+  security:
+    cors-permit-host: "localhost:8000"
