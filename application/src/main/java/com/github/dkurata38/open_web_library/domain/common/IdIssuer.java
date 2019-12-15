@@ -8,7 +8,7 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
-public class IdIssuer<T> {
+public class IdIssuer<T extends Identifier<T>> {
 	private final Function<String, T> constructor;
 
 	public T issue() {

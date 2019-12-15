@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import static java.util.stream.Collectors.*;
-
 @RequiredArgsConstructor
 @Service
 public class MemberDetailService implements UserDetailsService {
@@ -23,7 +21,7 @@ public class MemberDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("not found:" + username);
 		}
 
-		return memberCredentialRepository.getMemberCredentialByLoginIdEquals(username)
+		return memberCredentialRepository.findMemberCredentialByLoginId(username)
 			.map(memberCredential -> new User(username, memberCredential.getPassword(), AuthorityUtils.createAuthorityList("USER")))
 			.orElseThrow(() -> new UsernameNotFoundException("not found:" + username));
 	}

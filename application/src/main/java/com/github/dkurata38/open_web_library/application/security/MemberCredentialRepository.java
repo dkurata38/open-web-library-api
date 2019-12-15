@@ -11,5 +11,5 @@ import static java.util.stream.Collectors.*;
 
 public interface MemberCredentialRepository extends CrudRepository<MemberCredential, MemberCredentialId> {
 	@Query("SELECT * FROM member_credential WHERE login_id = :loginId")
-	Optional<MemberCredential> getMemberCredentialByLoginIdEquals(String loginId);
+	Optional<MemberCredential> findMemberCredentialByLoginId(String loginId);
 }
