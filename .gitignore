@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Gradle template
 .gradle
-build/
+**/build/
 
 generator/src/main/java/com/github/dkurata38/open_web_library/infra/repository/*
 !generator/src/main/java/com/github/dkurata38/open_web_library/infra/repository

@@ -27,7 +27,8 @@ logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
 application:
-  cors-permit-host: "localhost:8000"
+  security:
+    cors-permit-host: "localhost:8000"
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
