@@ -1,3 +1,5 @@
+sourceCompatibility = '11'
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -8,16 +10,18 @@ configurations {
 }
 
 dependencies {
+    implementation platform('org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE')
+
     implementation project(':domain')
-    implementation project(':common')
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    compileOnly 'org.projectlombok:lombok'
+    implementation project(':application')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-gcp-starter'
+    implementation 'org.springframework.cloud:spring-cloud-gcp-starter-vision'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.springframework.security:spring-security-test'
     testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
