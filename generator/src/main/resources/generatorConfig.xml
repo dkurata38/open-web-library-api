@@ -2,7 +2,7 @@
         "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+    <context id="dsql" targetRuntime="MyBatis3Simple">
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -27,17 +27,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="member"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableUpdateByExample="false"
-               domainObjectName="MemberTable"
-               ></table>
-        <table tableName="member_credential"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableUpdateByExample="false"
-               domainObjectName="MemberCredentialTable"
-        ></table>
+        <table tableName="member" domainObjectName="MemberTable"></table>
+        <table tableName="member_credential" domainObjectName="MemberCredentialTable"></table>
     </context>
 </generatorConfiguration>
