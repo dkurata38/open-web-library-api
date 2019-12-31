@@ -12,9 +12,9 @@ configurations {
 dependencies {
     implementation project(':domain')
     implementation project(':application')
-    implementation project(':common')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+    implementation 'com.github.dkurata38:domain-lib:1.0.0'
     //    implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

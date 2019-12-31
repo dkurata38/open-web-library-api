@@ -17,10 +17,10 @@ dependencies {
     implementation project(':client')
     implementation project(':repository')
     implementation project(':domain')
-    implementation project(':common')
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.github.dkurata38:domain-lib:1.0.0'
     //    implementation 'org.flywaydb:flyway-core'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'

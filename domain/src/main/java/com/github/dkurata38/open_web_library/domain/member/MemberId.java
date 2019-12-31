@@ -1,7 +1,7 @@
 package com.github.dkurata38.open_web_library.domain.member;
 
-import com.github.dkurata38.open_web_library.common.IdIssuer;
-import com.github.dkurata38.open_web_library.common.Identifier;
+import com.github.dkurata38.library.domain_lib.persistence.IdIssuer;
+import com.github.dkurata38.library.domain_lib.persistence.Identifier;
 import lombok.Value;
 
 import javax.validation.constraints.NotNull;
