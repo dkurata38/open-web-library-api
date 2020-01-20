@@ -29,6 +29,9 @@ logging:
 application:
   security:
     cors-permit-host: "http://localhost:8000"
+jwt:
+  security-key: aaa
+  validity-time: 1s
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

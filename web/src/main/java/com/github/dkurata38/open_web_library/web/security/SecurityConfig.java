@@ -1,6 +1,8 @@
-package com.github.dkurata38.open_web_library.web.config;
+package com.github.dkurata38.open_web_library.web.security;
 
 import com.github.dkurata38.open_web_library.application.security.MemberDetailService;
+import com.github.dkurata38.open_web_library.web.security.JwtAuthenticationSuccessHandler;
+import com.github.dkurata38.open_web_library.web.security.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,12 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
@@ -56,8 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl(LOGIN_PROCESSING_PATH).permitAll()
 				.usernameParameter(USER_NAME_PARAMETER)
 				.passwordParameter(PASSWORD_PARAMETER)
-				.successHandler(new ReturningHttpOkHandler())
-				// success handler return 200
+				.successHandler(new JwtAuthenticationSuccessHandler(jwtTokenService))
 				.failureHandler(new AuthenticationEntryPointFailureHandler(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
 		.and()
 			.logout()
@@ -69,7 +72,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.ignoringAntMatchers(LOGIN_PROCESSING_PATH)
 		.and()
 			.cors()
-			.configurationSource(corsConfigurationSource());
+			.configurationSource(corsConfigurationSource())
+		.and()
+			.addFilterBefore(new JwtAuthenticationFilter(jwtTokenService, memberDetailService), UsernamePasswordAuthenticationFilter.class)
+			.sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	public CorsConfigurationSource corsConfigurationSource() {
@@ -81,18 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return urlBasedCorsConfigurationSource;
 	}
 
-	public static class ReturningHttpOkHandler implements AuthenticationSuccessHandler {
-
-		@Override
-		public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain, final Authentication authentication) throws IOException, ServletException {
-			response.setStatus(HttpStatus.OK.value());
-		}
-
-		@Override
-		public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
-			response.setStatus(HttpStatus.OK.value());
-		}
-	}
+	private final JwtTokenService jwtTokenService;
 
 	@Bean
 	PasswordEncoder passwordEncoder() {

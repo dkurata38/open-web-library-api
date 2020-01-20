@@ -2,6 +2,7 @@ package com.github.dkurata38.open_web_library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -12,7 +13,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 		, "com.github.dkurata38.open_web_library.application.*"
 		, "com.github.dkurata38.open_web_library.web.*"
 })
-@EnableConfigurationProperties
+@ConfigurationPropertiesScan
 public class OpenWebLibraryApplication {
 
 	public static void main(String[] args) {
