@@ -20,20 +20,15 @@ spring:
     throw-exception-if-no-handler-found: true
   resources:
     add-mappings: false
+  thymeleaf:
+    cache: false
 logging:
   level:
     org.springframework: ERROR
     com.github.dkurata38.open_web_library: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
-application:
-  security:
-    cors-permit-host: "http://localhost:8000"
-jwt:
-  security-key: aaa
-  validity-time: 1s
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
-
