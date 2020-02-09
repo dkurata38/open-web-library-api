@@ -15,10 +15,10 @@ import org.springframework.web.client.RestTemplate;
 		, "com.github.dkurata38.open_web_library.api.*"
 })
 @ConfigurationPropertiesScan
-public class OpenWebLibraryApplication {
+public class OpenWebLibraryApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OpenWebLibraryApplication.class, args);
+		SpringApplication.run(OpenWebLibraryApiApplication.class, args);
 	}
 
 	@Bean
