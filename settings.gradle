@@ -1,3 +1,3 @@
 rootProject.name = "open_web_library"
 
-include ':application', ':domain', ':client', ':repository', ':generator', ':web'
+include ':application', ':domain', ':client', ':repository', ':generator', ':api'
