@@ -1,9 +1,7 @@
-package com.github.dkurata38.open_web_library.web.api.library;
+package com.github.dkurata38.open_web_library.api.library;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-
-import static java.util.stream.Collectors.*;
 
 @Controller
 @RequiredArgsConstructor

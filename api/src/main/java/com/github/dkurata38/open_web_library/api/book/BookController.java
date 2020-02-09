@@ -1,14 +1,12 @@
-package com.github.dkurata38.open_web_library.web.api.book;
+package com.github.dkurata38.open_web_library.api.book;
 
 import com.github.dkurata38.open_web_library.application.book.BookService;
 import com.github.dkurata38.open_web_library.domain.book.Book;
 import com.github.dkurata38.open_web_library.domain.book.BookSummary;
-import com.github.dkurata38.open_web_library.web.api.advice.JsonRestController;
+import com.github.dkurata38.open_web_library.api.advice.JsonRestController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 
 @JsonRestController

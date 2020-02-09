@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.api.advice;
+package com.github.dkurata38.open_web_library.api.advice;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.http.MediaType;

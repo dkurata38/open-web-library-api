@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.security;
+package com.github.dkurata38.open_web_library.api.security;
 
 import com.github.dkurata38.open_web_library.application.security.MemberDetailService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends GenericFilterBean {

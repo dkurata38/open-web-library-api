@@ -1,17 +1,18 @@
-package com.github.dkurata38.open_web_library;
+package com.github.dkurata38.open_web_library.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication(scanBasePackages = {
 		"com.github.dkurata38.open_web_library.repository.*"
 		, "com.github.dkurata38.open_web_library.client"
 		, "com.github.dkurata38.open_web_library.application.*"
-		, "com.github.dkurata38.open_web_library.web.*"
+		, "com.github.dkurata38.open_web_library.api.*"
 })
 @ConfigurationPropertiesScan
 public class OpenWebLibraryApplication {
@@ -23,6 +24,11 @@ public class OpenWebLibraryApplication {
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
+	}
+
+	@Bean
+	public RestTemplate restTemplate () {
+		return new RestTemplateBuilder().build();
 	}
 
 }

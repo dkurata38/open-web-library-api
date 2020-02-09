@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.security;
+package com.github.dkurata38.open_web_library.api.security;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
