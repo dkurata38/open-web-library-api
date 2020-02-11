@@ -16,10 +16,10 @@
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.github.dkurata38.open_web_library.infra.com.github.dkurata38.open_web_library.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
+        <javaModelGenerator targetPackage="com.github.dkurata38.open_web_library.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
-        <javaClientGenerator targetPackage="com.github.dkurata38.open_web_library.infra.com.github.dkurata38.open_web_library.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
+        <javaClientGenerator targetPackage="com.github.dkurata38.open_web_library.repository" targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

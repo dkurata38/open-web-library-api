@@ -3,8 +3,8 @@
 .gradle
 build/
 
-src/main/kotlin/com/github/dkurata38/open_web_library/infra/com.github.dkurata38.open_web_library.repository/*
-!src/main/kotlin/com/github/dkurata38/open_web_library/infra/com.github.dkurata38.open_web_library.repository
+src/main/kotlin/com/github/dkurata38/open_web_library/repository/*
+!src/main/kotlin/com/github/dkurata38/open_web_library/repository
 
 # Ignore Gradle GUI config
 gradle-app.setting
