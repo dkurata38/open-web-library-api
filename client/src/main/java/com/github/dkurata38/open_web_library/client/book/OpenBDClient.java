@@ -1,7 +1,6 @@
-package com.github.dkurata38.open_web_library.client;
+package com.github.dkurata38.open_web_library.client.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.dkurata38.open_web_library.application.book.BookSearchClient;
 import com.github.dkurata38.open_web_library.domain.book.BookSummary;
 import com.github.dkurata38.open_web_library.domain.book.ISBN;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.util.function.BiFunction;
 
 @Component
 @RequiredArgsConstructor
-public class OpenBDClient implements BookSearchClient {
+public class OpenBDClient {
 	private final RestTemplate restTemplate;
 
 	private static String URI_TEMPLATE = "https://api.openbd.jp/v1/get?isbn=%s";
@@ -27,11 +26,10 @@ public class OpenBDClient implements BookSearchClient {
 		return new BookSummary(isbn, summary.getTitle(), summary.getAuthor(), summary.getPublisher(), publishedDate, summary.cover);
 	};
 
-	@Override
 	public Optional<BookSummary> getByISBN(ISBN isbn) {
 		String uri = String.format(URI_TEMPLATE, isbn.getValue());
 		BookSummaryResponse[] responses = restTemplate.getForObject(uri, BookSummaryResponse[].class);
-		return Optional.ofNullable(responses)
+		return Optional.of(responses)
 				.filter(res -> res.length > 0)
 				.map(res -> res[0])
 				.map(res -> converter.apply(isbn, res));
