@@ -1,11 +1,11 @@
 package com.github.dkurata38.open_web_library.client;
 
-import com.github.dkurata38.open_web_library.application.book.ImageCognitionClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import com.github.dkurata38.open_web_library.client.image_congnition.ImageCognitionClient;
 
 @SpringBootTest
 @Slf4j
