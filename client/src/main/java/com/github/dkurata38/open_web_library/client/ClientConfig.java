@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 
 import static java.util.stream.Collectors.*;
 
-//@Slf4j
-//@ComponentScan(basePackages = {"com.github.dkurata38.open_web_library.client.*"})
-//@Configuration
-//public class ClientConfig {
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplateBuilder().build();
-//	}
-//}
+@Slf4j
+@ComponentScan(basePackages = {"com.github.dkurata38.open_web_library.client.*"})
+@Configuration
+public class ClientConfig {
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplateBuilder().build();
+	}
+}
