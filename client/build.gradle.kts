@@ -8,11 +8,7 @@ plugins {
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val developmentOnly by configurations.creating
 configurations {
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
@@ -20,29 +16,37 @@ configurations {
         extendsFrom(configurations.testAnnotationProcessor.get())
     }
 }
-
 dependencies {
+    implementation(platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE"))
     implementation(project(":domain"))
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
-    implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
-    implementation("com.github.dkurata38:domain-lib:1.0.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.springframework.cloud:spring-cloud-gcp-starter")
+    implementation("org.springframework.cloud:spring-cloud-gcp-starter-vision")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-    testRuntimeOnly("com.h2database:h2")
     testAnnotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    implementation(kotlin("stdlib-jdk8"))
 }
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-tasks.withType<KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
     }
+}
+repositories {
+    mavenCentral()
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
 }
