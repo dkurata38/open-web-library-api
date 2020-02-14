@@ -13,12 +13,12 @@ import com.github.dkurata38.open_web_library.repository.member_credential.Member
 class MemberDetailService(private val memberCredentialRepository: MemberCredentialRepository): UserDetailsService {
 
 	override fun loadUserByUsername(username: String): UserDetails {
-		if (StringUtils.isEmpty(username)) {
+		if (username.isEmpty()) {
 			throw UsernameNotFoundException("not found:$username")
 		}
 
 		return memberCredentialRepository.getMemberCredentialByLoginIdEquals(username)
-			?.let { User(username, it.password, AuthorityUtils.createAuthorityList("USER")) }
+				?.let { User(username, it.password, AuthorityUtils.createAuthorityList("USER")) }
 				?: throw UsernameNotFoundException("not found:$username")
 	}
 }
