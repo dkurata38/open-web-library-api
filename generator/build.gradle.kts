@@ -3,7 +3,6 @@ import com.thinkimi.gradle.MybatisGeneratorTask
 plugins {
     id("com.thinkimi.gradle.MybatisGenerator") version "2.1.2"
     kotlin("jvm") version "1.3.61"
-    kotlin("plugin.spring") version "1.3.61"
 }
 
 version = "0.0.1-SNAPSHOT"
