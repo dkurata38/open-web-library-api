@@ -20,8 +20,7 @@ class BookCollectionController(private val bookService: BookService) {
 
     @PostMapping("$resourcesPath/image_search")
     fun searchByImage(@RequestParam image: MultipartFile): ModelAndView {
-		val bookSummary = bookService.findByImage(image.getResource())
-				.orElse(null)
+		val bookSummary = bookService.findByImage(image.resource)
 		val modelAndView = ModelAndView("book_collection/input")
 				.addObject("bookSummary", bookSummary)
 		return modelAndView
