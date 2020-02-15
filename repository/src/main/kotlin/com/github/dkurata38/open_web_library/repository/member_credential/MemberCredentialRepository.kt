@@ -18,10 +18,10 @@ class MemberCredentialRepository(private val memberCredentialMapper: MemberCrede
 		)},
 		{
 			memberCredentialTableRecord -> MemberCredential(
-				MemberCredentialId(memberCredentialTableRecord.memberCredentialId),
-				MemberId(memberCredentialTableRecord.memberId),
-				memberCredentialTableRecord.loginId,
-				memberCredentialTableRecord.password
+				MemberCredentialId(memberCredentialTableRecord.memberCredentialId!!),
+				MemberId(memberCredentialTableRecord.memberId!!),
+				memberCredentialTableRecord.loginId!!,
+				memberCredentialTableRecord.password!!
 		)}) {
 
 	fun getMemberCredentialByLoginIdEquals(loginId: String): MemberCredential? {
