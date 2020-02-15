@@ -10,6 +10,8 @@ import com.github.dkurata38.open_web_library.repository.member_credential.Member
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.memberId
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.password
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.updatedAt
+import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialMapper
+import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.*
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*
