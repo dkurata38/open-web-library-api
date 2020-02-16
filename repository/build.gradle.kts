@@ -23,6 +23,7 @@ configurations {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":application"))
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
     implementation("com.github.dkurata38:domain-lib:1.0.0")

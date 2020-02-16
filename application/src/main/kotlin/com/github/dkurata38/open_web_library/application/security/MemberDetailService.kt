@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import org.springframework.util.StringUtils
-import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialRepository
 
 @Service
 class MemberDetailService(private val memberCredentialRepository: MemberCredentialRepository): UserDetailsService {
