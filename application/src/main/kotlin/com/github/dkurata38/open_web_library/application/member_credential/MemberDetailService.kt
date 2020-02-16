@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.application.security
+package com.github.dkurata38.open_web_library.application.member_credential
 
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.User

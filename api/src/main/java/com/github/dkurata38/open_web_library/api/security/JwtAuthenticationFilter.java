@@ -1,7 +1,9 @@
 package com.github.dkurata38.open_web_library.api.security;
 
-import com.github.dkurata38.open_web_library.application.security.MemberDetailService;
+import com.github.dkurata38.open_web_library.application.member_credential.MemberDetailService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
