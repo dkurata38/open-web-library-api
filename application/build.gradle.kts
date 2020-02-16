@@ -21,8 +21,6 @@ configurations {
 
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":client"))
-    implementation(project(":repository"))
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.github.dkurata38:domain-lib:1.0.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

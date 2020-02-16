@@ -19,6 +19,7 @@ configurations {
 dependencies {
     implementation(platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE"))
     implementation(project(":domain"))
+    implementation(project(":application"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter-vision")
@@ -33,7 +34,7 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
