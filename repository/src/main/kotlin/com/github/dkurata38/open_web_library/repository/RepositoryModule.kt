@@ -7,4 +7,4 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 @ComponentScan(basePackages = ["com.github.dkurata38.open_web_library.repository.*"])
 @MapperScan(basePackages = ["com.github.dkurata38.open_web_library.repository.*"])
-class RepositoryConfig
+class RepositoryModule
