@@ -11,12 +11,19 @@ allprojects {
 }
 
 subprojects {
-	apply plugin: 'java'
 	apply plugin: 'idea'
 	apply plugin: 'io.spring.dependency-management'
 
 	repositories {
 		mavenCentral()
+		maven {
+			name = 'GitHubPackages'
+			url = uri("https://maven.pkg.github.com/dkurata38/maven")
+			credentials {
+				username = project.findProperty('gpr.user') ?: System.getenv("USERNAME")
+				password = project.findProperty('gpr.token') ?: System.getenv("PASSWORD")
+			}
+		}
 	}
 
 	dependencyManagement {
