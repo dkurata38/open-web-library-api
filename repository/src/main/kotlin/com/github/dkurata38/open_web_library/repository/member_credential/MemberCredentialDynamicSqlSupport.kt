@@ -4,7 +4,6 @@
 package com.github.dkurata38.open_web_library.repository.member_credential
 
 import java.sql.JDBCType
-import java.time.LocalDateTime
 import org.mybatis.dynamic.sql.SqlTable
 
 object MemberCredentialDynamicSqlSupport {
@@ -16,9 +15,5 @@ object MemberCredentialDynamicSqlSupport {
         val loginId = column<String>("login_id", JDBCType.VARCHAR)
 
         val password = column<String>("password", JDBCType.VARCHAR)
-
-        val createdAt = column<LocalDateTime>("created_at", JDBCType.TIMESTAMP)
-
-        val updatedAt = column<LocalDateTime>("updated_at", JDBCType.TIMESTAMP)
     }
 }

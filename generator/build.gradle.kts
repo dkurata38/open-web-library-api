@@ -17,8 +17,9 @@ tasks.withType<MybatisGeneratorTask> {
 
     dependencies {
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
+        implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
         mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0")
-        mybatisGenerator( "org.postgresql:postgresql:42.2.6")
-        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.0.2")
+        mybatisGenerator("org.postgresql:postgresql:42.2.6")
+        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.0.3")
     }
 }

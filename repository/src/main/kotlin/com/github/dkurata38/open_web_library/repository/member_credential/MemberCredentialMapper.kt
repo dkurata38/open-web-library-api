@@ -3,6 +3,7 @@
  */
 package com.github.dkurata38.open_web_library.repository.member_credential
 
+import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialRecord
 import org.apache.ibatis.annotations.DeleteProvider
 import org.apache.ibatis.annotations.InsertProvider
 import org.apache.ibatis.annotations.Mapper
@@ -42,9 +43,7 @@ interface MemberCredentialMapper {
         Result(column="member_credential_id", property="memberCredentialId", jdbcType=JdbcType.VARCHAR, id=true),
         Result(column="member_id", property="memberId", jdbcType=JdbcType.VARCHAR),
         Result(column="login_id", property="loginId", jdbcType=JdbcType.VARCHAR),
-        Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        Result(column="created_at", property="createdAt", jdbcType=JdbcType.TIMESTAMP),
-        Result(column="updated_at", property="updatedAt", jdbcType=JdbcType.TIMESTAMP)
+        Result(column = "password", property = "password", jdbcType = JdbcType.VARCHAR)
     ])
     fun selectMany(selectStatement: SelectStatementProvider): List<MemberCredentialRecord>
 

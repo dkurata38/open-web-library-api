@@ -4,13 +4,10 @@
 package com.github.dkurata38.open_web_library.repository.member_credential
 
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential
-import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.createdAt
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.loginId
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.memberCredentialId
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.memberId
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.password
-import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialDynamicSqlSupport.MemberCredential.updatedAt
-import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialMapper
 import com.github.dkurata38.open_web_library.repository.member_credential.MemberCredentialRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.*
@@ -33,8 +30,6 @@ fun MemberCredentialMapper.insert(record: MemberCredentialRecord) =
         map(memberId).toProperty("memberId")
         map(loginId).toProperty("loginId")
         map(password).toProperty("password")
-        map(createdAt).toProperty("createdAt")
-        map(updatedAt).toProperty("updatedAt")
     }
 
 fun MemberCredentialMapper.insertMultiple(records: Collection<MemberCredentialRecord>) =
@@ -43,8 +38,6 @@ fun MemberCredentialMapper.insertMultiple(records: Collection<MemberCredentialRe
         map(memberId).toProperty("memberId")
         map(loginId).toProperty("loginId")
         map(password).toProperty("password")
-        map(createdAt).toProperty("createdAt")
-        map(updatedAt).toProperty("updatedAt")
     }
 
 fun MemberCredentialMapper.insertMultiple(vararg records: MemberCredentialRecord) =
@@ -56,11 +49,9 @@ fun MemberCredentialMapper.insertSelective(record: MemberCredentialRecord) =
         map(memberId).toPropertyWhenPresent("memberId", record::memberId)
         map(loginId).toPropertyWhenPresent("loginId", record::loginId)
         map(password).toPropertyWhenPresent("password", record::password)
-        map(createdAt).toPropertyWhenPresent("createdAt", record::createdAt)
-        map(updatedAt).toPropertyWhenPresent("updatedAt", record::updatedAt)
     }
 
-private val columnList = listOf(memberCredentialId, memberId, loginId, password, createdAt, updatedAt)
+private val columnList = listOf(memberCredentialId, memberId, loginId, password)
 
 fun MemberCredentialMapper.selectOne(completer: SelectCompleter) =
     selectOne(this::selectOne, columnList, MemberCredential, completer)
@@ -85,8 +76,6 @@ fun KotlinUpdateBuilder.updateAllColumns(record: MemberCredentialRecord) =
         set(memberId).equalTo(record::memberId)
         set(loginId).equalTo(record::loginId)
         set(password).equalTo(record::password)
-        set(createdAt).equalTo(record::createdAt)
-        set(updatedAt).equalTo(record::updatedAt)
     }
 
 fun KotlinUpdateBuilder.updateSelectiveColumns(record: MemberCredentialRecord) =
@@ -95,8 +84,6 @@ fun KotlinUpdateBuilder.updateSelectiveColumns(record: MemberCredentialRecord) =
         set(memberId).equalToWhenPresent(record::memberId)
         set(loginId).equalToWhenPresent(record::loginId)
         set(password).equalToWhenPresent(record::password)
-        set(createdAt).equalToWhenPresent(record::createdAt)
-        set(updatedAt).equalToWhenPresent(record::updatedAt)
     }
 
 fun MemberCredentialMapper.updateByPrimaryKey(record: MemberCredentialRecord) =
@@ -104,8 +91,6 @@ fun MemberCredentialMapper.updateByPrimaryKey(record: MemberCredentialRecord) =
         set(memberId).equalTo(record::memberId)
         set(loginId).equalTo(record::loginId)
         set(password).equalTo(record::password)
-        set(createdAt).equalTo(record::createdAt)
-        set(updatedAt).equalTo(record::updatedAt)
         where(memberCredentialId, isEqualTo(record::memberCredentialId))
     }
 
@@ -114,7 +99,5 @@ fun MemberCredentialMapper.updateByPrimaryKeySelective(record: MemberCredentialR
         set(memberId).equalToWhenPresent(record::memberId)
         set(loginId).equalToWhenPresent(record::loginId)
         set(password).equalToWhenPresent(record::password)
-        set(createdAt).equalToWhenPresent(record::createdAt)
-        set(updatedAt).equalToWhenPresent(record::updatedAt)
         where(memberCredentialId, isEqualTo(record::memberCredentialId))
     }
