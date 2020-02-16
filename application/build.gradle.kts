@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
@@ -36,7 +38,7 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
