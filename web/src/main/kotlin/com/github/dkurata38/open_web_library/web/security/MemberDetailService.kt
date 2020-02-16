@@ -1,5 +1,6 @@
-package com.github.dkurata38.open_web_library.application.member_credential
+package com.github.dkurata38.open_web_library.web.security
 
+import com.github.dkurata38.open_web_library.application.member_credential.MemberCredentialRepository
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
@@ -8,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class MemberDetailService(private val memberCredentialRepository: MemberCredentialRepository): UserDetailsService {
+class MemberDetailService(private val memberCredentialRepository: MemberCredentialRepository) : UserDetailsService {
 
 	override fun loadUserByUsername(username: String): UserDetails {
 		if (username.isEmpty()) {

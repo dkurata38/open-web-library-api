@@ -23,7 +23,7 @@ configurations {
 
 dependencies {
     implementation(project(":domain"))
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("com.github.dkurata38:domain-lib:1.0.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -31,7 +31,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-    testImplementation("org.springframework.security:spring-security-test")
     testAnnotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 
