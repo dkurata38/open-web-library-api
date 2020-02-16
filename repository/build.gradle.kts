@@ -8,11 +8,7 @@ plugins {
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val developmentOnly by configurations.creating
 configurations {
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
@@ -23,6 +19,7 @@ configurations {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":application"))
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
     implementation("com.github.dkurata38:domain-lib:1.0.0")
