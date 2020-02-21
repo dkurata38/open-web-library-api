@@ -3,7 +3,7 @@ package com.github.dkurata38.open_web_library.domain.member
 import com.github.dkurata38.library.domain_lib.persistence.IdIssuer
 import com.github.dkurata38.library.domain_lib.persistence.Identifier
 
-class MemberId(private val _value: String) : Identifier<MemberId> {
+data class MemberId(private val _value: String) : Identifier<MemberId> {
     companion object {
         private val idIssuer = IdIssuer { MemberId(it) }
         fun issue(): MemberId {

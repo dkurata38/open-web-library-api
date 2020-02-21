@@ -14,7 +14,7 @@ class MemberCredentialId(private val _value: String) : Identifier<MemberCredenti
 
 
     override fun getType(): Class<MemberCredentialId> {
-        return MemberCredentialId::class.java
+        return javaClass
     }
 
     override fun getValue(): String {
