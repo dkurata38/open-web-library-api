@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Open Web Library</a>
+			<a href="#" data-target="slide-out" class="sidenav-trigger">
+				<i class="material-icons">menu</i>
+			</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li>
+					<a th:href="@{/book_collections}">
+						<i class="material-icons">book</i>蔵書管理
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<script type="application/javascript">
+	  document.addEventListener('DOMContentLoaded', function () {
+		  const elems = document.querySelectorAll('.sidenav');
+		  const instances = M.Sidenav.init(elems, {});
+	  });
+	</script>
+	<ul id="slide-out" class="sidenav">
+		<li>
+			<a th:href="@{/book_collections}">
+				<i class="material-icons">book</i>蔵書管理
+			</a>
+		</li>
+	</ul>
+</header>
+</body>
+</html>

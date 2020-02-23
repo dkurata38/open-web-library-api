@@ -9,8 +9,13 @@ import org.springframework.web.servlet.ModelAndView
 @Controller
 class BookCollectionController(private val bookService: BookService) {
 	companion object {
-		private const val resourcesPath = "books"
-		private const val resourcePath = "book/{id}"
+		private const val resourcesPath = "book_collections"
+		private const val resourcePath = "book_collection/{id}"
+	}
+
+	@GetMapping(resourcesPath)
+	fun index(): ModelAndView {
+		return ModelAndView("book_collection/index")
 	}
 
 //    @PostMapping(resourcesPath + "/search")
@@ -18,17 +23,17 @@ class BookCollectionController(private val bookService: BookService) {
 //		return bookService.findBy()
 //    }
 
-    @PostMapping("$resourcesPath/image_search")
-    fun searchByImage(@RequestParam image: MultipartFile): ModelAndView {
+	@PostMapping("$resourcesPath/image_search")
+	fun searchByImage(@RequestParam image: MultipartFile): ModelAndView {
 		val bookSummary = bookService.findByImage(image.resource)
 		val modelAndView = ModelAndView("book_collection/input")
 				.addObject("bookSummary", bookSummary)
 		return modelAndView
 	}
 
-    @GetMapping(resourcePath)
+	@GetMapping(resourcePath)
 	fun show(@PathVariable id: Int) {
-    	// TODO
+		// TODO
 		return
     }
 
