@@ -26,13 +26,13 @@ class BookCollectionController(private val bookService: BookService) {
 //    }
 
 	@GetMapping("$resourcesPath/image_search")
-	fun searchByImage(): ModelAndView {
-		return ModelAndView("book_colelction/image_search")
+	fun searchBookByImage(): ModelAndView {
+		return ModelAndView("book_collection/image_search")
 	}
 
 	@PostMapping("$resourcesPath/image_search")
-	fun searchByImage(@RequestParam image: MultipartFile,
-					  redirectAttributes: RedirectAttributes): RedirectView {
+	fun searchBookByImage(@RequestParam image: MultipartFile,
+						  redirectAttributes: RedirectAttributes): RedirectView {
 		val isbn = bookService.extractISBNFromImage(image.resource)
 
 		if (isbn == null) {
