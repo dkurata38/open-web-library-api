@@ -12,7 +12,7 @@ class BookSearchClientImplTest(@Autowired private val bookSearchClientImpl: Book
 
 	@Test
 	fun getByISBN() {
-		val isbn = ISBN.ofBarcode("ISBN978-4-7981-3161-0")
+		val isbn = ISBN.extractFromText("ISBN978-4-7981-3161-0")
 		val bookSummary = bookSearchClientImpl.getByISBN(isbn)
 		Assertions.assertNotNull(bookSummary)
 	}

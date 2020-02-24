@@ -1,85 +1,61 @@
 package com.github.dkurata38.open_web_library.domain.book
 
-sealed class ISBN(val value: String) {
+class ISBN(val value: String) {
 	companion object {
 		fun of(value: String): ISBN {
-			if (ISBN13.matches(value)) {
-				return ISBN13(value)
+			if (Type.ISBN13.matches(value)) {
+				return Type.ISBN13.toISBN(value)
 			}
-			if (ISBN10.matches(value)) {
-				return ISBN10(value)
-			}
-			throw IllegalArgumentException()
-		}
-
-		fun ofBarcode(value: String): ISBN {
-			if (ISBN13.matchesWithBarcode(value)) {
-				return ISBN13.fromBarcode(value)
-			}
-			if (ISBN10.matchesWithBarcode(value)) {
-				return ISBN10.fromBarcode(value)
+			if (Type.ISBN10.matches(value)) {
+				return Type.ISBN10.toISBN(value)
 			}
 			throw IllegalArgumentException()
 		}
 
-		fun extractBarcodeFromText(value: String): ISBN {
-			if (ISBN13.matchesWithBarcode(value)) {
-				return ISBN13.fromBarcode(value)
+		fun extractFromText(value: String): ISBN {
+			if (Type.ISBN13.contains(value)) {
+				return Type.ISBN13.toISBNFrom(value)
 			}
-			if (ISBN10.matchesWithBarcode(value)) {
-				return ISBN10.fromBarcode(value)
+			if (Type.ISBN10.contains(value)) {
+				return Type.ISBN10.toISBNFrom(value)
 			}
 			throw IllegalArgumentException()
 		}
+	}
 
-		class ISBN10(value: String) : ISBN(value) {
-			companion object {
-				private const val PATTERN_STRING: String = """([\d|\-]{13})"""
-				private const val BARCODE_PATTERN_STRING: String = "ISBN$PATTERN_STRING"
+	enum class Type(private val pattern: String) {
+		ISBN10("""([\d|\-]{13})""")
+		,
+		ISBN13("""([\d|\-]{17})""");
 
-				fun fromBarcode(text: String): ISBN10 {
-					return BARCODE_PATTERN_STRING
-							.toRegex()
-							.find(text)
-							?.value
-							?.let { ISBN10(it) }
-							?: throw java.lang.IllegalArgumentException()
-				}
-
-				fun matches(testText: String): Boolean {
-					return PATTERN_STRING
-							.toRegex()
-							.matches(testText)
-				}
-
-				fun matchesWithBarcode(testText: String): Boolean {
-					return BARCODE_PATTERN_STRING
-							.toRegex()
-							.matches(testText)
-				}
-			}
+		fun matches(testText: String): Boolean {
+			return pattern
+					.toRegex()
+					.matches(testText)
 		}
 
-		class ISBN13(value: String) : ISBN(value) {
-			companion object {
-				private const val PATTERN_STRING = """[\d|\-]{17}"""
-				private const val BARCODE_PATTERN_STRING = "ISBN$PATTERN_STRING"
-				fun fromBarcode(text: String): ISBN13 {
-					return ISBN13(text)
-				}
+		fun contains(testText: String): Boolean {
+			return pattern
+					.toRegex()
+					.containsMatchIn(testText)
+		}
 
-				fun matches(testText: String): Boolean {
-					return PATTERN_STRING
-							.toRegex()
-							.matches(testText)
-				}
+		fun toISBN(source: String): ISBN {
+			return pattern
+					.toRegex()
+					.matchEntire(source)
+					?.let { it.groups[1] }
+					?.let { ISBN(it.value) }
+					?: throw IllegalArgumentException()
+		}
 
-				fun matchesWithBarcode(testText: String): Boolean {
-					return BARCODE_PATTERN_STRING
-							.toRegex()
-							.matches(testText)
-				}
-			}
+		fun toISBNFrom(source: String): ISBN {
+			return pattern
+					.toRegex()
+					.find(source)
+					?.let { it.groups[1] }
+					?.let { ISBN(it.value) }
+					?: throw IllegalArgumentException()
 		}
 	}
 }

@@ -19,11 +19,9 @@ configurations {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.5.2")
-    testImplementation("org.junit.vintage:junit-vintage-engine:5.5.2")
+    implementation(kotlin("reflect"))
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
     implementation("com.github.dkurata38:domain-lib:1.0.0")
 }
 
