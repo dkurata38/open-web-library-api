@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
+import org.springframework.web.servlet.view.RedirectView
 
 @Controller
 class BookCollectionController(private val bookService: BookService) {
@@ -29,32 +31,20 @@ class BookCollectionController(private val bookService: BookService) {
 	}
 
 	@PostMapping("$resourcesPath/image_search")
-	fun searchByImage(@RequestParam image: MultipartFile): ModelAndView {
-		val bookSummary = bookService.findByImage(image.resource)
-		val modelAndView = ModelAndView("book_collection/input")
-				.addObject("bookSummary", bookSummary)
-		return modelAndView
-	}
+	fun searchByImage(@RequestParam image: MultipartFile,
+					  redirectAttributes: RedirectAttributes): RedirectView {
+		val isbn = bookService.extractISBNFromImage(image.resource)
 
-	@GetMapping(resourcePath)
-	fun show(@PathVariable id: Int) {
-		// TODO
-		return
+		if (isbn == null) {
+			redirectAttributes.addFlashAttribute("", "")
+			return RedirectView("$resourcesPath/input")
+		}
+		return RedirectView("$resourcesPath/input?isbn=${isbn}")
 	}
 
 	@GetMapping("$resourcesPath/input")
-	fun input(): ModelAndView {
-		return ModelAndView("book_collection/input")
-	}
-
-	@PostMapping(resourcesPath)
-	fun create() {
+	fun show(@RequestParam isbn: String) {
 		// TODO
 		return
-	}
-
-	@DeleteMapping(resourcePath)
-	fun delete(@PathVariable id: Int) {
-		// TODO
 	}
 }

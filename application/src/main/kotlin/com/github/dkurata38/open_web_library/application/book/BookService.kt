@@ -17,12 +17,16 @@ class BookService(private val bookRepository: BookRepository,
 
 	fun findByImage(resource: Resource): BookSummary? {
 		return extractISBNFromImage(resource)
-		?.let { bookSearchClient.getByISBN(it) }
+				?.let { findByISBN(it) }
 	}
 
 	fun extractISBNFromImage(resource: Resource): ISBN? {
 		val text = imageCognitionClient.extractTextFromImage(resource)
 		return runCatching { ISBN.extractBarcodeFromText(text) }
 				.getOrNull()
+	}
+
+	fun findByISBN(isbn: ISBN): BookSummary? {
+		return bookSearchClient.getByISBN(isbn)
 	}
 }
