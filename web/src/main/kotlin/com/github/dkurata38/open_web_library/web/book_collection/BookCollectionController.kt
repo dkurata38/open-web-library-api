@@ -11,8 +11,8 @@ import org.springframework.web.servlet.view.RedirectView
 @Controller
 class BookCollectionController(private val bookService: BookService) {
 	companion object {
-		private const val resourcesPath = "book_collections"
-		private const val resourcePath = "book_collection/{id}"
+		private const val resourcesPath = "/book_collections"
+		private const val resourcePath = "/book_collection/{id}"
 	}
 
 	@GetMapping(resourcesPath)
