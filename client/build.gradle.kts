@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter-vision")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
