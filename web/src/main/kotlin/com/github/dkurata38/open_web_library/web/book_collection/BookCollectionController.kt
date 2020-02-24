@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.book
+package com.github.dkurata38.open_web_library.web.book_collection
 
 import com.github.dkurata38.open_web_library.application.book.BookService
 import org.springframework.stereotype.Controller
