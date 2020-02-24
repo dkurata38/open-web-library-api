@@ -35,16 +35,21 @@ class BookCollectionController(private val bookService: BookService) {
 	fun show(@PathVariable id: Int) {
 		// TODO
 		return
-    }
+	}
 
-    @PostMapping(resourcesPath)
+	@GetMapping("$resourcesPath/input")
+	fun input(): ModelAndView {
+		return ModelAndView("book_collection/input")
+	}
+
+	@PostMapping(resourcesPath)
 	fun create() {
-    	// TODO
-    	return
+		// TODO
+		return
 	}
 
 	@DeleteMapping(resourcePath)
 	fun delete(@PathVariable id: Int) {
-    	// TODO
+		// TODO
 	}
 }
