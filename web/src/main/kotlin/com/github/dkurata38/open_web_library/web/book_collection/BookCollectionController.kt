@@ -2,7 +2,9 @@ package com.github.dkurata38.open_web_library.web.book_collection
 
 import com.github.dkurata38.open_web_library.application.book.BookService
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
@@ -37,9 +39,9 @@ class BookCollectionController(private val bookService: BookService) {
 
 		if (isbn == null) {
 			redirectAttributes.addFlashAttribute("", "")
-			return RedirectView("$resourcesPath/input")
+			return RedirectView("$resourcesPath/image_search")
 		}
-		return RedirectView("$resourcesPath/input?isbn=${isbn}")
+		return RedirectView("$resourcesPath/input?isbn=${isbn.value}")
 	}
 
 	@GetMapping("$resourcesPath/input")
