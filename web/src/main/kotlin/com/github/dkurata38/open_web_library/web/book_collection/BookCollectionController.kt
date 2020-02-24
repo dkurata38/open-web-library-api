@@ -1,6 +1,9 @@
 package com.github.dkurata38.open_web_library.web.book_collection
 
 import com.github.dkurata38.open_web_library.application.book.BookService
+import com.github.dkurata38.open_web_library.domain.book.ISBN
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -45,8 +48,16 @@ class BookCollectionController(private val bookService: BookService) {
 	}
 
 	@GetMapping("$resourcesPath/input")
-	fun show(@RequestParam isbn: String) {
-		// TODO
-		return
+	fun putBook(@RequestParam isbn: ISBN,
+				@AuthenticationPrincipal user: User,
+				redirectAttributes: RedirectAttributes): ModelAndView {
+		val bookSummary = bookService.findByISBN(isbn)
+		if (bookSummary == null) {
+			redirectAttributes.addFlashAttribute("", "")
+			return ModelAndView("book_collection/input")
+
+		}
+		return ModelAndView("book_collection/input")
+				.addObject("bookSummary", bookSummary)
 	}
 }

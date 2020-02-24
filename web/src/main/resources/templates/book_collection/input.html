@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+			th:replace="~{layouts/layout::layout(~{::title}, ~{::body/content})}">
+<head>
+	<title>蔵書登録</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col s3">
+			<img src="#" th:src="${bookSummary.coverImageUrl}" alt="表紙画像">
+		</div>
+		<div class="col s9">
+			<dl>
+				<dt>
+					タイトル
+				</dt>
+				<dd th:text="${bookSummary.title}">
+				</dd>
+				<dt>
+					著者
+				</dt>
+				<dd th:text="${bookSummary.author}">
+				</dd>
+				<dt>
+					出版社
+				</dt>
+				<dd th:text="${bookSummary.publisher}">
+				</dd>
+				<dt>
+					出版日
+				</dt>
+				<dd th:text="${#temporals.format(bookSummary.publishedDate, 'yyyy-MM-dd')}">
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<form th:action="@{/book_collections}" method="post">
+		<input type="hidden" name="method" value="put">
+		<input type="hidden" name="isbn"
+					 th:value="${bookSummary.isbn.value}">
+		<button class="btn waves-effect waves-light" type="submit"
+						name="action">Submit
+			<i class="material-icons right">send</i>
+		</button>
+	</form>
+</div>
+</body>
+</html>
