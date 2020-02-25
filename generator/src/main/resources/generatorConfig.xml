@@ -18,20 +18,28 @@
         </javaTypeResolver>
 
         <javaModelGenerator
-                targetPackage="com.github.dkurata38.open_web_library.repository"
+                targetPackage="com.github.dkurata38.open_web_library.repository.book_collection"
                 targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
         <javaClientGenerator
-                targetPackage="com.github.dkurata38.open_web_library.repository"
+                targetPackage="com.github.dkurata38.open_web_library.repository.book_collection"
                 targetProject="/Users/kuratadaisuke/Projects/open-web-library/source/open-web-library/generator/src/main/kotlin">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--        <table tableName="member"/>-->
-        <table tableName="member_credential">
-            <ignoreColumn column="created_at"/>
-            <ignoreColumn column="updated_at"/>
-        </table>
+        <!--        <table tableName="member_credential">-->
+        <!--            <ignoreColumn column="created_at"/>-->
+        <!--            <ignoreColumn column="updated_at"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="book">-->
+        <!--            <ignoreColumn column="created_at"/>-->
+        <!--            <ignoreColumn column="updated_at"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="book_collection">-->
+        <!--            <ignoreColumn column="created_at"/>-->
+        <!--            <ignoreColumn column="updated_at"/>-->
+        <!--        </table>-->
     </context>
 </generatorConfiguration>
