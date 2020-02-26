@@ -8,10 +8,14 @@ plugins {
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+repositories {
+    mavenLocal()
+}
+
 tasks.withType<MybatisGeneratorTask> {
     verbose = true
     val configFileName = "generatorConfig.xml"
-    configFile = sourceSets.getByName("main").resources.find{ (it.name == configFileName) }
+    configFile = sourceSets.getByName("main").resources.find { (it.name == configFileName) }
     targetDir = projectDir.toPath().toString()
     overwrite = true
 
@@ -20,6 +24,6 @@ tasks.withType<MybatisGeneratorTask> {
         implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
         mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0")
         mybatisGenerator("org.postgresql:postgresql:42.2.6")
-        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.0.3")
+        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.0.4")
     }
 }
