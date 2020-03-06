@@ -1,8 +1,10 @@
+import com.thinkimi.gradle.MybatisGeneratorTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
+    id("com.thinkimi.gradle.MybatisGenerator") version "2.1.2"
 }
 
 version = "0.0.1-SNAPSHOT"
@@ -40,5 +42,19 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
+    }
+}
+
+tasks.withType<MybatisGeneratorTask> {
+    verbose = true
+    val configFileName = "generatorConfig.xml"
+    configFile = sourceSets.getByName("test").resources.find{ (it.name == configFileName) }
+    targetDir = projectDir.toPath().toString()
+    overwrite = true
+
+    dependencies {
+        mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0")
+        mybatisGenerator("org.postgresql:postgresql")
+        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.1.0")
     }
 }

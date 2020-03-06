@@ -51,11 +51,10 @@ class BookCollectionController(private val bookService: BookService) {
 	fun putBook(@RequestParam isbn: ISBN,
 				@AuthenticationPrincipal user: User,
 				redirectAttributes: RedirectAttributes): ModelAndView {
-		val bookSummary = bookService.findByISBN(isbn)
+		val bookSummary = bookService.findByISBNFromExternalResource(isbn)
 		if (bookSummary == null) {
 			redirectAttributes.addFlashAttribute("", "")
 			return ModelAndView("book_collection/input")
-
 		}
 		return ModelAndView("book_collection/input")
 				.addObject("bookSummary", bookSummary)

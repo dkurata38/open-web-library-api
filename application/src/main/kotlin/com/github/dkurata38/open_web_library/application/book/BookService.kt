@@ -23,7 +23,7 @@ class BookService(private val bookRepository: BookRepository,
 
 	fun findByImage(resource: Resource): BookSummary? {
 		return extractISBNFromImage(resource)
-				?.let { findByISBN(it) }
+				?.let { findByISBNFromExternalResource(it) }
 	}
 
 	fun extractISBNFromImage(resource: Resource): ISBN? {
@@ -33,7 +33,7 @@ class BookService(private val bookRepository: BookRepository,
 				.getOrNull()
 	}
 
-	fun findByISBN(isbn: ISBN): BookSummary? {
+	fun findByISBNFromExternalResource(isbn: ISBN): BookSummary? {
 		return bookSearchClient.getByISBN(isbn)
 	}
 }
