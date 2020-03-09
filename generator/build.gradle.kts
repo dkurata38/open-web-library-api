@@ -24,6 +24,6 @@ tasks.withType<MybatisGeneratorTask> {
         implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4")
         mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0")
         mybatisGenerator("org.postgresql:postgresql:42.2.6")
-        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.0.4")
+        mybatisGenerator("com.github.dkurata38:mybatis-generator-plugins:0.1.1")
     }
 }
