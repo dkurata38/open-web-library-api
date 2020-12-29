@@ -1,7 +1,5 @@
 package com.github.dkurata38.open_web_library.library_domain
 
-import com.github.dkurata38.open_web_library.library_domain.LibraryItem
-
 interface GetLibraryItemUseCase {
 	/**
 	 * @param ownerId 所有者

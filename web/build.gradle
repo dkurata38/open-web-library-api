@@ -15,8 +15,6 @@ configurations {
 
 dependencies {
     implementation(project(':library-domain'))
-    implementation(project(':google-book-collation-client'))
-    implementation(project(':library-infra'))
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time'

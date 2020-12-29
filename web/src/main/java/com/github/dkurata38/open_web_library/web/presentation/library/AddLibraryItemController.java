@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.library;
+package com.github.dkurata38.open_web_library.web.presentation.library;
 
 import java.util.Map;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;

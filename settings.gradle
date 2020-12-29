@@ -2,5 +2,4 @@ rootProject.name = "open_web_library"
 
 include ':generator', ':web'
 include ':library-domain'
-include ':library-infra'
-include 'google-book-collation-client'
+include 'security'

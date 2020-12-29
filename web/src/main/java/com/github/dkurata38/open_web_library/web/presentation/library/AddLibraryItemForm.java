@@ -1,4 +1,4 @@
-package com.github.dkurata38.open_web_library.web.library;
+package com.github.dkurata38.open_web_library.web.presentation.library;
 
 import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
