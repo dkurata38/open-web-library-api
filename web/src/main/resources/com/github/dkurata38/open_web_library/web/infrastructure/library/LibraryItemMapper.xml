@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.dkurata38.open_web_library.web.infrastructure.library.LibraryItemMapper">
+	<resultMap id="BaseResultMap" type="com.github.dkurata38.open_web_library.library_domain.LibraryItem">
+		<constructor>
+			<idArg column="added_library_item_id" javaType="com.github.dkurata38.open_web_library.library_domain.LibraryItemId"/>
+			<arg column="book_id" javaType="com.github.dkurata38.open_web_library.library_domain.BookId"/>
+			<arg column="owner_id" javaType="com.github.dkurata38.open_web_library.library_domain.OwnerId"/>
+			<arg resultMap="BookCollationMap" javaType="com.github.dkurata38.open_web_library.library_domain.BookCollation"/>
+		</constructor>
+	</resultMap>
+	<resultMap id="BookCollationMap" type="com.github.dkurata38.open_web_library.library_domain.BookCollation">
+		<constructor>
+			<arg column="title" javaType="java.lang.String" />
+			<arg column="author_name" javaType="java.lang.String" />
+			<arg column="publisher_name" javaType="java.lang.String" />
+			<arg column="published_on" javaType="java.time.LocalDate"/>
+			<arg column="language" javaType="java.lang.String"/>
+			<arg column="isbn13" javaType="com.github.dkurata38.open_web_library.library_domain.Isbn13"/>
+		</constructor>
+	</resultMap>
+	<select id="selectByOwnerId" resultMap="BaseResultMap">
+		SELECT
+		    added_library_item_id,
+		    added_library_item.book_id,
+		    added_library_item.owner_id,
+			book.title,
+			book.author_name,
+			book.publisher_name,
+			book.published_on,
+			book.language,
+			book.isbn13
+		FROM
+			added_library_item
+			INNER JOIN book
+				ON added_library_item.book_id = book.book_id
+		WHERE
+			added_library_item.owner_id = #{ownerId}
+	</select>
+	<select id="selectById" resultMap="BaseResultMap">
+		SELECT
+			added_library_item_id,
+			added_library_item.book_id,
+			added_library_item.owner_id,
+			book.title,
+			book.author_name,
+			book.publisher_name,
+			book.published_on,
+			book.language,
+			book.isbn13
+		FROM
+			added_library_item
+			INNER JOIN book
+			    ON added_library_item.book_id = book.book_id
+		WHERE
+			added_library_item.added_library_item_id = #{id}
+	</select>
+</mapper>
