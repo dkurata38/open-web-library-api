@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.dkurata38.open_web_library.web.infrastructure.library.BookMapper">
+	<resultMap id="BaseResultMap" type="com.github.dkurata38.open_web_library.library_domain.Book">
+		<constructor>
+			<idArg column="book_id" javaType="com.github.dkurata38.open_web_library.library_domain.BookId"/>
+			<arg resultMap="BookCollationResultMap" javaType="com.github.dkurata38.open_web_library.library_domain.BookCollation"/>
+		</constructor>
+	</resultMap>
+	<resultMap id="BookCollationResultMap" type="com.github.dkurata38.open_web_library.library_domain.BookCollation">
+		<constructor>
+			<arg column="title" javaType="java.lang.String" />
+			<arg column="author_name" javaType="java.lang.String" />
+			<arg column="publisher_name" javaType="java.lang.String" />
+			<arg column="published_on" javaType="java.time.LocalDate"/>
+			<arg column="language" javaType="java.lang.String"/>
+			<arg column="isbn13" javaType="com.github.dkurata38.open_web_library.library_domain.Isbn13"/>
+		</constructor>
+	</resultMap>
+	<select id="selectById" resultMap="BaseResultMap">
+		SELECT
+			book_id,
+			title,
+			author_name,
+			publisher_name,
+			published_on,
+			language,
+			isbn13
+		FROM
+			book
+		WHERE
+			book_id = #{id.value}
+	</select>
+
+	<select id="selectByIsbn13" resultMap="BaseResultMap">
+		SELECT
+			book_id,
+			title,
+			author_name,
+			publisher_name,
+			published_on,
+			language,
+			isbn13
+		FROM
+			book
+		WHERE
+			isbn13 = #{isbn13.value}
+	</select>
+
+	<select id="selectAllBy" resultMap="BaseResultMap">
+		SELECT
+			book_id,
+			title,
+			author_name,
+			publisher_name,
+			published_on,
+			language,
+			isbn13
+		FROM
+			book
+		WHERE
+			<trim prefixOverrides="AND">
+				<if test="ids != null">
+					AND book_id IN <foreach collection="ids" open="(" item="id" separator="," close=")">#{id.value}</foreach>
+				</if>
+			</trim>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO book(book_id, title, author_name, publisher_name, published_on, language, isbn13)
+		VALUES (#{id.value}, #{bookCollation.title}, #{bookCollation.authorName}, #{bookCollation.publisherName}, #{bookCollation.publishedOn}, #{bookCollation.language}, #{bookCollation.isbn13.value})
+	</insert>
+
+	<update id="updateById">
+		UPDATE
+			book
+		SET
+			title = #{bookCollation.title},
+		    author_name = #{bookCollation.authorName},
+		    publisher_name = #{bookCollation.publisherName},
+		    published_on = #{bookCollation.publishedOn},
+		    language = #{bookCollation.language},
+		    isbn13 = #{bookCollation.isbn13.value}
+		WHERE
+			book_id = #{id.value}
+	</update>
+</mapper>

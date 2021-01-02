@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.dkurata38.open_web_library.web.infrastructure.library.AddedLibraryItemMapper">
+	<select id="selectAllBy" resultType="com.github.dkurata38.open_web_library.library_domain.AddedLibraryItem">
+		SELECT
+		    added_library_item_id "id",
+			book_id "bookId",
+			owner_id "ownerId",
+			added_at "addedAt"
+		FROM
+			added_library_item
+		WHERE
+			<trim prefixOverrides="AND">
+				<if test="ownerId != null">
+					AND owner_id = #{ownerId}
+				</if>
+			</trim>
+	</select>
+	<select id="selectById" resultType="com.github.dkurata38.open_web_library.library_domain.AddedLibraryItem">
+		SELECT
+			added_library_item_id "id",
+			book_id "bookId",
+			owner_id "ownerId",
+			added_at "addedAt"
+		FROM
+			added_library_item
+		WHERE
+			added_library_item_id = #{id}
+	</select>
+	<insert id="insert">
+		INSERT INTO added_library_item(added_library_item_id, book_id, owner_id, added_at)
+		VALUES (#{id}, #{bookId}, #{ownerId}, #{addedAt})
+	</insert>
+</mapper>
