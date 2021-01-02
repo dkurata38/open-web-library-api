@@ -5,7 +5,7 @@ import java.time.LocalDate
 data class Book(val id: BookId, val bookCollation: BookCollation)
 
 data class BookCollation(val title: String, val authorName: String, val publisherName: String,
-						 val onSaleDate: LocalDate, val language: String, val isbn13: Isbn13)
+						 val publishedOn: LocalDate, val language: String, val isbn13: Isbn13)
 
 data class BookId(val value: String) {
 	companion object {
