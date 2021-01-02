@@ -3,3 +3,5 @@ rootProject.name = "open_web_library"
 include ':generator', ':web'
 include ':library-domain'
 include 'security'
+include 'member-domain'
+

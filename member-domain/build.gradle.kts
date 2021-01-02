@@ -8,11 +8,7 @@ plugins {
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val developmentOnly by configurations.creating
 configurations {
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
@@ -21,20 +17,24 @@ configurations {
     }
 }
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-    }
-    testAnnotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+repositories {
+    mavenCentral()
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation(platform("org.junit:junit-bom:5.7.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
