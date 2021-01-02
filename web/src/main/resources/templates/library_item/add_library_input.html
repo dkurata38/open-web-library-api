@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>蔵書追加</title>
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.17/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.17/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.17/dist/js/uikit-icons.min.js"></script>
+
+</head>
+<body>
+	<div class="uk-section">
+		<div class="uk-container">
+			<div class="uk-section-small">
+				<h2 class="uk-heading-divider">蔵書追加</h2>
+			</div>
+			<div class="uk-section-small">
+				<form th:object="${addLibraryItemForm}" action="/library_items/add" th:action="@{'/library_items/add'}" method="post">
+					<div class="uk-margin">
+						<label class="uk-form-label" for="title">タイトル</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="title" name="title" th:field="*{title}">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="authorName">著者</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="authorName" name="authorName" th:field="*{authorName}">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="publisherName">出版社</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="publisherName" name="publisherName" th:field="*{publisherName}">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="onSaleDate">出版日</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="onSaleDate" name="onSaleDate" th:field="*{onSaleDate}">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="language">言語</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="language" name="language" th:field="*{language}">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="isbn">ISBN</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" id="isbn" name="isbn" th:field="*{isbn}">
+						</div>
+					</div>
+
+					<div class="uk-margin uk-flex uk-flex-middle uk-flex-right">
+						<div><button class="uk-button">戻る</button></div>
+						<div><button class="uk-button uk-button-primary">追加</button></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
