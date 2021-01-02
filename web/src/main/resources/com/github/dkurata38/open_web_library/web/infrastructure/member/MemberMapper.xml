@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.dkurata38.open_web_library.web.infrastructure.member.MemberMapper">
+	<resultMap id="BaseResultMap" type="com.github.dkurata38.open_web_library.member_domain.Member">
+		<constructor>
+			<idArg column="member_id" javaType="com.github.dkurata38.open_web_library.member_domain.MemberId"/>
+			<arg column="name" javaType="java.lang.String"/>
+			<arg column="registered_at" javaType="java.time.LocalDateTime"/>
+		</constructor>
+	</resultMap>
+	<select id="selectByMemberId">
+		SELECT
+			member_id,
+			name,
+		    registered_at
+		FROM
+			member
+		WHERE
+			member_id = #{memberId}
+	</select>
+	<insert id="insert">
+		INSERT INTO member(member_id, name, registered_at)
+		VALUES (#{memberId}, #{name}, #{registeredAt})
+	</insert>
+</mapper>
