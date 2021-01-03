@@ -16,7 +16,7 @@ configurations {
 dependencies {
     implementation(project(':library-domain'))
     implementation(project(':member-domain'))
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -27,7 +27,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:mybatis-spring-boot-starter-test:2.1.4'
-//    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {

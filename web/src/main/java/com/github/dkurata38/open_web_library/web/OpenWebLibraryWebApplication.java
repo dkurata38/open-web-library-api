@@ -13,6 +13,11 @@ import com.github.dkurata38.open_web_library.library_domain.BookRepository;
 import com.github.dkurata38.open_web_library.library_domain.GetLibraryItemUseCase;
 import com.github.dkurata38.open_web_library.library_domain.GetLibraryItemUseCaseImpl;
 import com.github.dkurata38.open_web_library.library_domain.LibraryItemRepository;
+import com.github.dkurata38.open_web_library.member_domain.GetMemberUseCase;
+import com.github.dkurata38.open_web_library.member_domain.GetMemberUseCaseImpl;
+import com.github.dkurata38.open_web_library.member_domain.MemberRepository;
+import com.github.dkurata38.open_web_library.member_domain.RegisterMemberUseCase;
+import com.github.dkurata38.open_web_library.member_domain.RegisterMemberUseCaseImpl;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
@@ -26,6 +31,16 @@ public class OpenWebLibraryWebApplication {
 	@Bean
 	public GetLibraryItemUseCase getLibraryItemUseCase(LibraryItemRepository libraryItemRepository) {
 		return new GetLibraryItemUseCaseImpl(libraryItemRepository);
+	}
+
+	@Bean
+	public GetMemberUseCase getMemberUseCase(MemberRepository memberRepository) {
+		return new GetMemberUseCaseImpl(memberRepository);
+	}
+
+	@Bean
+	public RegisterMemberUseCase registerMemberUseCase(MemberRepository memberRepository) {
+		return new RegisterMemberUseCaseImpl(memberRepository);
 	}
 
 	@Bean
