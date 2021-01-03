@@ -11,7 +11,7 @@
 			<arg column="registered_at" javaType="java.time.LocalDateTime"/>
 		</constructor>
 	</resultMap>
-	<select id="selectByMemberId">
+	<select id="selectByMemberId" resultMap="BaseResultMap">
 		SELECT
 			member_id,
 			username,
@@ -22,7 +22,7 @@
 		WHERE
 			member_id = #{memberId}
 	</select>
-	<select id="selectByUsername">
+	<select id="selectByUsername" resultMap="BaseResultMap">
 		SELECT
 			member_id,
 			username,
@@ -35,6 +35,6 @@
 	</select>
 	<insert id="insert">
 		INSERT INTO member(member_id, username, password, registered_at)
-		VALUES (#{memberId}, #{username}, #{password},  #{registeredAt})
+		VALUES (#{id}, #{username}, #{password},  #{registeredAt})
 	</insert>
 </mapper>
