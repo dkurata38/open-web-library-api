@@ -22,4 +22,9 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public void save(Member member) {
 		memberMapper.insert(member);
 	}
+
+	@Override
+	public Member findByUsername(String username) {
+		return memberMapper.selectByUsername(username);
+	}
 }
